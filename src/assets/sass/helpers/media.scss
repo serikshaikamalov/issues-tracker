@@ -1,0 +1,19 @@
+@import "./../mixins/media-phone";
+
+.only-desktop {
+  display: inherit !important;
+}
+
+.only-mobile {
+  display: none !important;
+}
+
+@include media-phone() {
+  .only-desktop {
+    display: none !important;
+  }
+
+  .only-mobile {
+    display: inherit !important;
+  }
+}

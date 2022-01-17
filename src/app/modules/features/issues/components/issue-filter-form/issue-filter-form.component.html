@@ -1,0 +1,7 @@
+<form [formGroup]="filterForm">
+  <select formControlName="tag">
+    <option *ngFor="let t of tags" [value]="t">
+      {{ t }}
+    </option>
+  </select>
+</form>

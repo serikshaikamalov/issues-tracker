@@ -1,0 +1,22 @@
+@import "./variables.scss";
+@import "./mixins/media-phone";
+
+body {
+  background-color: #fff;
+}
+
+// For desktop
+.container {
+  width: 960px;
+  margin: auto;
+  position: relative;
+}
+
+// Max width 600 and down: Only mobile devices
+@include media-phone() {
+  .container {
+    width: 100%;
+    padding: 0 16px;
+    min-width: 375px;
+  }
+}

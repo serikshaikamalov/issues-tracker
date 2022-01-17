@@ -1,0 +1,24 @@
+$main-fs: 16;
+
+$primary: #3a91dc;
+$white: #ffffff;
+$gray: #ececec;
+
+$colors: (
+  "primary": $primary,
+  "white": $white,
+  "gray": $gray,
+);
+
+$font-weights: 400, 500, 600, 700, 800;
+
+$space-list: 0, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40;
+
+$positions: "top", "right", "bottom", "left";
+
+$sides: (
+  "t": "top",
+  "r": "right",
+  "b": "bottom",
+  "l": "left",
+);

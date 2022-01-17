@@ -1,0 +1,29 @@
+<form [formGroup]="createForm" (ngSubmit)="submit()" class="create-form">
+  <div>
+    <input
+      type="text"
+      formControlName="title"
+      class="create-form__title"
+      placeholder="Title"
+    />
+  </div>
+  <div>
+    <textarea
+      name="text"
+      class="create-form__text"
+      rows="10"
+      placeholder="Leave a comment"
+      formControlName="text"
+    ></textarea>
+  </div>
+  <!-- Tags -->
+  <div>
+    <tag-input [tags]="tags" [tagsDictionaries]="tagsDictionaries"></tag-input>
+  </div>
+  <div>
+    <button type="submit">Save</button>
+  </div>
+  <pre>
+    {{ createForm.value | json }}
+  </pre>
+</form>

@@ -1,0 +1,12 @@
+:host{
+    .create-form{
+        & > * {
+            margin-bottom: 10px;
+            & > * {
+                width: 100%;
+            }
+        }
+        .create-form__title{}
+        .create-form__text{}
+    }
+}

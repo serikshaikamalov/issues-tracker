@@ -1,0 +1,16 @@
+<ng-container *ngIf="response">
+  <app-issue-filter-form
+    [tags]="tags"
+    (onTagChanged)="onTagChanged($event)"
+  ></app-issue-filter-form>
+  <app-issue-list
+    [data]="response"
+    (onEdit)="edit($event)"
+    (onDelete)="deleteIssue($event)"
+  ></app-issue-list>
+  <app-issue-form
+    [tagsDictionaries]="tags"
+    (loadData)="reload()"
+    (onSubmit)="onCreate($event)"
+  ></app-issue-form>
+</ng-container>
