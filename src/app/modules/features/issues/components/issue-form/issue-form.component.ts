@@ -26,7 +26,6 @@ export class IssueFormComponent implements OnInit {
   constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
-    console.log(this.issue);
     this.issueForm = this.createForm(this.issue);
   }
 
@@ -54,8 +53,6 @@ export class IssueFormComponent implements OnInit {
   }
 
   submit(): void {
-    console.log('IssueFormComponent', this.issueForm.getRawValue());
-
     if (this.issueForm?.invalid) return;
     this.onSubmit.emit(this.issueForm.getRawValue());
     // Reset form
