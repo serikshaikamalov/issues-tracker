@@ -25,6 +25,7 @@ a {
 }
 
 button {
+  height: fit-content;
   cursor: pointer;
   &:focus {
     outline: none;

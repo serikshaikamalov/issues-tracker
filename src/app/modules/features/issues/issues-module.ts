@@ -13,6 +13,7 @@ import { TagsMockService } from './services/tags-mock.service';
 import { IssueFilterFormComponent } from './components/issue-filter-form/issue-filter-form.component';
 import { TagInputItemComponent } from './components/tag-input-item/tag-input-item.component';
 import { TagInputComponent } from './components/tag-input/tag-input.component';
+import { IssueListItemComponent } from './components/issue-list-item/issue-list-item.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { TagInputComponent } from './components/tag-input/tag-input.component';
     IssueFilterFormComponent,
     TagInputItemComponent,
     TagInputComponent,
-    
+    IssueListItemComponent,
   ],
   imports: [
     CommonModule,

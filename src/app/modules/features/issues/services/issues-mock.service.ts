@@ -14,12 +14,14 @@ export class IssuesMockService implements IssuesService {
       id: '1',
       title: 'This is a bag',
       text: 'This is a description of the item, it might describe a bug/task/comment, it can also display <a href=” www.google.com ”>Links</a>',
+
       tags: ['bug'],
     },
     {
       id: '2',
       title: 'This is an issue',
       text: 'This is a description of the item, it might describe a bug/task/comment, it can also display <a href=” www.google.com ”>Links</a>',
+
       tags: ['issue'],
     },
   ];
@@ -45,6 +47,14 @@ export class IssuesMockService implements IssuesService {
     // return this.http
     //   .get<IIssue[]>('assets/mock/issues-data.json')
     //   .pipe(tap((response) => (this.data = response)));
+  }
+
+  get(id: string): Observable<IIssue> {
+    const item: IIssue | undefined = this.data.find((x) => x.id === id);
+    if (!item) {
+      throw Error('not_found');
+    }
+    return of(item).pipe(delay(100));
   }
 
   /**

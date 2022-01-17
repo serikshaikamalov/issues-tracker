@@ -1,5 +1,7 @@
-<form [formGroup]="filterForm">
+<form [formGroup]="filterForm" class="m-b-12">
+  <span>Issue type: </span>
   <select formControlName="tag">
+    <option value="">All</option>
     <option *ngFor="let t of tags" [value]="t">
       {{ t }}
     </option>

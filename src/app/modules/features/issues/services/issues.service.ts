@@ -7,6 +7,7 @@ import { IIssue } from '../interfaces/issue.interface';
 export abstract class IssuesService {
   abstract data: IIssue[];
   abstract getAll(tag?: string): Observable<IIssue[]>;
+  abstract get(id: string): Observable<IIssue>;
   abstract create(post: IIssue): Observable<IIssue>;
   abstract update(id: string, issue: IIssue): Observable<IIssue>;
   abstract delete(id: string): Observable<string>;

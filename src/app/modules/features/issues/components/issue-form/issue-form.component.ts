@@ -6,9 +6,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { Subject, switchMap, takeUntil } from 'rxjs';
 import { IIssue } from '../../interfaces/issue.interface';
-import { IssuesService } from '../../services/issues.service';
 
 @Component({
   selector: 'app-issue-form',
@@ -20,35 +18,52 @@ export class IssueFormComponent implements OnInit {
    * All tags from issues
    */
   @Input() tagsDictionaries: string[] = [];
-
-  createForm: FormGroup;
-  destroy$: Subject<boolean> = new Subject();
+  @Input() issue!: IIssue;
+  issueForm!: FormGroup;
   @Output() onSubmit: EventEmitter<IIssue> = new EventEmitter();
+  isPreview: boolean = false;
 
-  constructor(private fb: FormBuilder, private service: IssuesService) {
-    this.createForm = this.fb.group({
-      title: new FormControl([''], [Validators.required, Validators.required]),
-      text: new FormControl([''], [Validators.required]),
-      tags: new FormArray([new FormControl('bugs')]),
+  constructor(private fb: FormBuilder) {}
+
+  ngOnInit(): void {
+    console.log(this.issue);
+    this.issueForm = this.createForm(this.issue);
+  }
+
+  createForm(issue: IIssue) {
+    const tags: FormControl[] =
+      this.issue?.tags?.map((x) => new FormControl(x)) || [];
+
+    return this.fb.group({
+      id: new FormControl(issue?.id),
+      title: new FormControl(issue?.title, [
+        Validators.required,
+        Validators.required,
+      ]),
+      text: new FormControl(issue?.text, [Validators.required]),
+      tags: new FormArray(tags),
     });
   }
 
-  get tags(): FormArray {
-    return this.createForm.get('tags') as FormArray;
+  get text(): FormControl {
+    return this.issueForm.get('text') as FormControl;
   }
 
-  ngOnInit(): void {}
+  get tags(): FormArray {
+    return this.issueForm.get('tags') as FormArray;
+  }
 
   submit(): void {
-    if (this.createForm?.invalid) return;
-    this.onSubmit.emit(this.createForm.getRawValue());
+    console.log('IssueFormComponent', this.issueForm.getRawValue());
+
+    if (this.issueForm?.invalid) return;
+    this.onSubmit.emit(this.issueForm.getRawValue());
     // Reset form
-    this.tags.clear();
-    this.tags.reset();
+    if (!this.issue?.id) {
+      this.issueForm.reset();
+      this.tags.clear();
+    }
   }
 
-  ngOnDestroy(): void {
-    this.destroy$.next(true);
-    this.destroy$.unsubscribe();
-  }
+  cancel(): void {}
 }

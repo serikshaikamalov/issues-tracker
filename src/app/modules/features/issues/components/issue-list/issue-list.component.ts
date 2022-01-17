@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IIssue } from '../../interfaces/issue.interface';
 
 @Component({
@@ -6,17 +6,14 @@ import { IIssue } from '../../interfaces/issue.interface';
   templateUrl: './issue-list.component.html',
   styleUrls: ['./issue-list.component.scss'],
 })
-export class IssueListComponent implements OnInit {
+export class IssueListComponent {
   @Input() data?: IIssue[];
+  @Input() tags: string[] = [];
   @Output() onDelete: EventEmitter<string> = new EventEmitter();
-  @Output() onEdit: EventEmitter<string> = new EventEmitter();
+  @Output() onEdit: EventEmitter<IIssue> = new EventEmitter();
 
-  constructor() {}
-
-  ngOnInit(): void {}
-
-  edit(id: string) {
-    this.onEdit.emit(id);
+  edit(issue: IIssue) {
+    this.onEdit.emit(issue);
   }
 
   deleteIssue(id: string) {

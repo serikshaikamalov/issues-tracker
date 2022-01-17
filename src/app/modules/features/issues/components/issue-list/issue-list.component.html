@@ -1,13 +1,8 @@
 <div *ngFor="let i of data" class="issue">
-  <div>
-    <button (click)="edit(i.id)">Edit</button>
-    <button (click)="deleteIssue(i.id)">Delete</button>
-  </div>
-  <h2> {{i.id}} {{ i.title }}</h2>
-  <p>{{ i.text }}</p>
-  <div class="tags">
-    <div *ngFor="let t of i.tags" class="tags__item">
-      {{ t }}
-    </div>
-  </div>
+  <app-issue-list-item
+    [tags]="tags"
+    [issue]="i"
+    (onEdit)="edit($event)"
+    (onDelete)="deleteIssue($event)"
+  ></app-issue-list-item>
 </div>

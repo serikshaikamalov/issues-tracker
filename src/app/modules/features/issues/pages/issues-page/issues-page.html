@@ -3,14 +3,19 @@
     [tags]="tags"
     (onTagChanged)="onTagChanged($event)"
   ></app-issue-filter-form>
+
   <app-issue-list
+    [tags]="tags"
     [data]="response"
     (onEdit)="edit($event)"
     (onDelete)="deleteIssue($event)"
   ></app-issue-list>
+
   <app-issue-form
     [tagsDictionaries]="tags"
-    (loadData)="reload()"
     (onSubmit)="onCreate($event)"
   ></app-issue-form>
+  <pre>
+    {{response | json}}
+  </pre>
 </ng-container>

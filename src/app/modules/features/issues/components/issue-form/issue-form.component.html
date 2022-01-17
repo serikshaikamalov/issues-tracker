@@ -1,29 +1,50 @@
-<form [formGroup]="createForm" (ngSubmit)="submit()" class="create-form">
-  <div>
-    <input
-      type="text"
-      formControlName="title"
-      class="create-form__title"
-      placeholder="Title"
-    />
-  </div>
-  <div>
-    <textarea
-      name="text"
-      class="create-form__text"
-      rows="10"
-      placeholder="Leave a comment"
-      formControlName="text"
-    ></textarea>
-  </div>
-  <!-- Tags -->
-  <div>
-    <tag-input [tags]="tags" [tagsDictionaries]="tagsDictionaries"></tag-input>
-  </div>
-  <div>
-    <button type="submit">Save</button>
-  </div>
-  <pre>
-    {{ createForm.value | json }}
-  </pre>
-</form>
+<div>
+  <form [formGroup]="issueForm" (ngSubmit)="submit()" class="create-form">
+    <div>
+      <input
+        type="text"
+        formControlName="title"
+        class="create-form__title"
+        placeholder="Title"
+      />
+    </div>
+    <div>
+      <textarea
+        name="text"
+        class="create-form__text p-4"
+        rows="10"
+        placeholder="Leave a comment"
+        formControlName="text"
+      ></textarea>
+
+      <!-- Preview -->
+      <h2>Preview</h2>
+      <div [innerHTML]="text.value"
+       
+      ></div>
+    </div>
+    <!-- Tags -->
+    <tag-input
+      [selectedTags]="tags"
+      [tagsDictionaries]="tagsDictionaries"
+    ></tag-input>
+
+    <!-- Buttons -->
+    <div class="create-form__buttons">
+      <button
+        type="button"
+        (click)="cancel()"
+        class="button create-form__cancel-button"
+      >
+        Cancel
+      </button>
+      <button
+        type="button"
+        (click)="submit()"
+        class="button create-form__save-button"
+      >
+        Save
+      </button>
+    </div>
+  </form>
+</div>

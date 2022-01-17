@@ -3,12 +3,12 @@
 .p {
   @each $i in $space-list {
     &-#{$i} {
-      margin: #{$i}px;
+      padding: #{$i}px;
     }
 
     @each $shortPosition, $longPosition in $sides {
       &-#{$shortPosition}-#{$i} {
-        margin-#{$longPosition}: #{$i}px;
+        padding-#{$longPosition}: #{$i}px;
       }
     }
   }

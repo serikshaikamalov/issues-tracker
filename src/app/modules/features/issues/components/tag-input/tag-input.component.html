@@ -1,36 +1,39 @@
 <tag-input-item
-  *ngFor="let tag of tags.getRawValue(); let index = index"
-  ƒ
+  *ngFor="let tag of selectedTags.getRawValue(); let index = index"
   [text]="tag"
   [index]="index"
   (tagRemoved)="removeTag($event)"
 >
 </tag-input-item>
-<!-- 
-<input
-  class="ng2-tag-input-field"
-  type="text"
-  [(ngModel)]="tagInput"
-  (ngModelChange)="handleChange($event)"
-/>
 
-<button (click)="add()">Add</button>
+<div class="flex-row">
+  <button
+    *ngIf="!isTagDropdownVisible"
+    (click)="showTagOption()"
+    type="button"
+    class="m-r-8"
+  >
+    Add
+  </button>
 
-{{ value | json }} -->
-<input
-  type="string"
-  [(ngModel)]="tagInput"
-  (ngModelChange)="tagChanged($event)"
-/>
+  <div *ngIf="isTagDropdownVisible" class="tags-dropdown">
+    <!-- Input -->
+    <input
+      class="tags-dropdown__search"
+      type="string"
+      [(ngModel)]="tagInput"
+      (ngModelChange)="tagChanged($event)"
+    />
 
-<ng-container *ngIf="tagsVM.length > 0; else noTag">
-  <select>
-    <option *ngFor="let t of tagsVM">
-      {{ t }}
-    </option>
-  </select>
-</ng-container>
-
-<ng-template #noTag>
-  <button (click)="addTag()" type="button">Add</button>
-</ng-template>
+    <div class="tags-dropdown__list" *ngIf="tagsVM.length > 0">
+      <div *ngFor="let t of tagsVM" (click)="addTag(t)">
+        <span>{{ t }}</span>
+      </div>
+    </div>
+  </div>
+  <!-- <pre>
+    Selected: {{ selectedTags.value | json }}
+    All: {{ tagsDictionaries | json }}
+    Live tag dictionaries: {{ tagsVM | json }}
+  </pre> -->
+</div>

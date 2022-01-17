@@ -4,17 +4,5 @@
     padding: 10px;
     margin-bottom: 16px;
   }
-
-  .tags {
-    display: flex;
-    & > * {
-      font-weight: 500;
-      color: green;
-      font-size: 14px;
-
-      &:not(:last-child) {
-        margin-right: 10px;
-      }
-    }
-  }
+  
 }

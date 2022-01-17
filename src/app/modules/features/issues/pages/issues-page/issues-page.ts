@@ -38,23 +38,28 @@ export class IssuesPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loadData$.next(true);
+    this.reload();
   }
 
   reload() {
     this.loadData$.next(true);
   }
 
-  edit(id: string): void {}
+  edit(issue: IIssue): void {
+    this.service
+      .update(issue.id, issue)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((res) => {
+        this.reload();
+      });
+  }
 
   deleteIssue(id: string): void {
-    console.log(id);
-
     this.service
       .delete(id)
       .pipe(takeUntil(this.destroy$))
       .subscribe((res) => {
-        this.loadData$.next(true);
+        this.reload();
       });
   }
 
@@ -63,15 +68,13 @@ export class IssuesPageComponent implements OnInit {
       .create(issue)
       .pipe(takeUntil(this.destroy$))
       .subscribe((res) => {
-        this.loadData$.next(true);
+        this.reload();
       });
   }
 
   onTagChanged(tag: string) {
-    console.log(tag);
-
     this.tag = tag;
-    this.loadData$.next(true);
+    this.reload();
   }
 
   ngOnDestroy(): void {

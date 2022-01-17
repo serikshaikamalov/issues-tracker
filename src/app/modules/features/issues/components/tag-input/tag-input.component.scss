@@ -1,0 +1,24 @@
+:host {
+  display: block;
+  .tags-dropdown {
+    position: relative;
+    &__search {
+    }
+
+    &__list {
+      position: absolute;
+      background-color: #fff;
+      padding: 2px;
+      width: 100%;
+      border: 1px solid #ddd;
+
+      & > * {
+        cursor: pointer;
+
+        &:hover {
+          background-color: #dff;
+        }
+      }
+    }
+  }
+}

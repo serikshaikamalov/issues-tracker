@@ -1,0 +1,22 @@
+<div *ngIf="mode == 'view'">
+  <div>
+    <button (click)="showEditor()">Edit</button>
+    <button (click)="deleteIssue(issue.id)">Delete</button>
+  </div>
+
+  <h2>ID:   {{ issue.id }}. {{ issue.title }}</h2>
+  <p>{{ issue.text }}</p>
+  <div class="tags">
+    <div *ngFor="let t of issue.tags" class="tags__item">
+      {{ t }}
+    </div>
+  </div>
+</div>
+
+<div *ngIf="mode == 'edit'">
+  <app-issue-form
+    [issue]="issue"
+    [tagsDictionaries]="tags"
+    (onSubmit)="onCreate($event)"
+  ></app-issue-form>
+</div>

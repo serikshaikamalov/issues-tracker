@@ -2,11 +2,18 @@
     .create-form{
         & > * {
             margin-bottom: 10px;
-            & > * {
+            textarea, input {
                 width: 100%;
             }
         }
         .create-form__title{}
         .create-form__text{}
+        .create-form__buttons{
+            width: fit-content;
+            display: flex;
+            .create-form__cancel-button{
+                margin-right: 15px;
+            }
+        }
     }
 }

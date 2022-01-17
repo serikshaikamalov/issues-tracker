@@ -7,8 +7,7 @@ import {
   Output,
 } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { Subject } from 'rxjs';
-import { TagsService } from '../../services/tags.service';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-issue-filter-form',
@@ -23,10 +22,10 @@ export class IssueFilterFormComponent implements OnDestroy {
 
   constructor(private fb: FormBuilder) {
     this.filterForm = this.fb.group({
-      tag: new FormControl(),
+      tag: new FormControl(''),
     });
 
-    this.tag.valueChanges.subscribe((v) => {
+    this.tag.valueChanges.pipe(takeUntil(this.destroy$)).subscribe((v) => {
       this.onTagChanged.next(v);
     });
   }
